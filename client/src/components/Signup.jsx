@@ -20,7 +20,7 @@ const Signup = ({ onClose }) => {
 
   const handleSignup = () => {
     // Add your signup logic here
-    console.log("Selected Option:", hoveredImage);
+    console.log("Selected Option:", selectedOption);
     // You may want to perform registration and handle the signup process
     // For simplicity, just close the modal in this example
     onClose();
