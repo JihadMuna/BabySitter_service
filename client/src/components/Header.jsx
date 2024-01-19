@@ -23,36 +23,36 @@ const Header = () => {
           <li>
             <img
               src={logoImage}
-              className="h-10 w-auto sm:h-6 sm:w-34 md:h-8 md:w-36 lg:h-10 lg:w-38 xl:h-12 xl:w-40"
+              className="h-8 w-auto sm:h-6 sm:w-20 md:h-8 md:w-24 lg:h-10 lg:w-28 xl:h-12 xl:w-32"
               alt="Logo"
             />
           </li>
         </ul>
       </nav>
-      <nav className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold">
+      <nav className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold">
         <ul className="flex gap-2 sm:gap-4">
-          <li className="border text-pink-700 border-black rounded hover:text-pink-500 hover:bg-gray-300 px-2 sm:px-4 py-1 text-sm sm:text-base">
+          <li className="border text-pink-700 border-black rounded hover:text-pink-500 hover:bg-gray-300 px-2 sm:px-4 py-1 text-xs sm:text-base">
             <Link to="/post-ad">Post Ad</Link>
           </li>
           <li>
             <Link
               to="/sign-up"
-              className="text-sm sm:text-base hover:border-transparent hover:text-pink-600"
+              className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
             >
               Sign Up
             </Link>
           </li>
-          <li className="text-gray-400 text-100">|</li>
+          <li className="text-gray-400 text-xs sm:text-base">|</li>
           <li>
             <Link
               to="/log-in"
-              className="text-sm sm:text-base hover:border-transparent hover:text-pink-600"
+              className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
             >
               Log In
             </Link>
           </li>
           <li>
-            <button className="px-2 py-1 sm:px-3 sm:py-1 rounded border text-blue-600 border-pink-500 hover:bg-gray-300 hover:text-blue-500 text-sm sm:text-base">
+            <button className="px-2 py-1 sm:px-3 sm:py-1 rounded border text-blue-600 border-pink-500 hover:bg-gray-300 hover:text-blue-500 text-xs sm:text-base">
               En
             </button>
           </li>

@@ -8,14 +8,17 @@ function Footer() {
       <div className="container mx-auto flex justify-between items-center">
         <ul className="flex space-x-4">
           <li>
-            <Link to="/about" className="text-blue-700 hover:text-blue-500">
+            <Link
+              to="/about"
+              className="text-blue-700 hover:text-blue-500 text-sm sm:text-base"
+            >
               About
             </Link>
           </li>
           <li>
             <Link
               to="/privacy-policy"
-              className="text-blue-700 hover:text-blue-500"
+              className="text-blue-700 hover:text-blue-500 text-sm sm:text-base"
             >
               Privacy Policy
             </Link>
@@ -23,7 +26,7 @@ function Footer() {
           <li>
             <Link
               to="/terms-of-use"
-              className="text-blue-700 hover:text-blue-500"
+              className="text-blue-700 hover:text-blue-500 text-sm sm:text-base"
             >
               Terms of Use
             </Link>
@@ -31,13 +34,17 @@ function Footer() {
           <li>
             <Link
               to="/customer-service"
-              className="text-blue-700 hover:text-blue-500"
+              className="text-blue-700 hover:text-blue-500 text-sm sm:text-sm"
             >
               Customer Service
             </Link>
           </li>
         </ul>
-        <img src={logoImage} alt="logo-image" className="h-14 w-30" />
+        <img
+          src={logoImage}
+          alt="logo-image"
+          className="h-6 w-auto sm:h-8 sm:w-18"
+        />
       </div>
     </footer>
   );
