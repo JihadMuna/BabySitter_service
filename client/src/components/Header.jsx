@@ -4,7 +4,7 @@ import logoImage from "../assets/babylogo.png";
 import { IoMenu } from "react-icons/io5";
 import Categories from "./Categories";
 
-const Header = () => {
+const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
   const [showCategories, setShowCategories] = useState(false);
 
   const toggleCategories = () => {
@@ -32,12 +32,13 @@ const Header = () => {
       <nav className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold">
         <ul className="flex gap-2 sm:gap-4">
           <li className="border text-pink-700 border-black rounded hover:text-pink-500 hover:bg-gray-300 px-2 sm:px-4 py-1 text-xs sm:text-base">
-            <Link to="/post-ad">Post Ad</Link>
+            <Link to="/">Main</Link>
           </li>
           <li>
             <Link
               to="/sign-up"
               className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
+              onClick={() => setSignupModalOpen(true)}
             >
               Sign Up
             </Link>
@@ -47,6 +48,7 @@ const Header = () => {
             <Link
               to="/log-in"
               className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
+              onClick={() => setLoginModalOpen(true)}
             >
               Log In
             </Link>
@@ -61,7 +63,7 @@ const Header = () => {
 
       {showCategories && (
         <Categories
-          onClose={toggleCategories}
+          closeModal={toggleCategories}
           style={{
             position: "absolute",
             left: "0",

@@ -3,6 +3,7 @@ import babyVideoLarge from "../assets/babies-large.mp4";
 import babyVideoSmall from "../assets/babies-small.mp4";
 import About from "./About";
 import Features from "./Features";
+import BabySittersPage from "./BabySittersPage";
 
 const HomePage = () => {
   return (
@@ -33,6 +34,7 @@ const HomePage = () => {
       <div className="scrollable-content p-4 sm:p-8 lg:p-12">
         <About />
         <Features />
+        <BabySittersPage />
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ function Footer() {
         <ul className="flex space-x-4">
           <li>
             <Link
-              to="/about"
+              to="/about-us"
               className="text-blue-700 hover:text-blue-500 text-sm sm:text-base"
             >
               About
@@ -33,10 +33,10 @@ function Footer() {
           </li>
           <li>
             <Link
-              to="/customer-service"
-              className="text-blue-700 hover:text-blue-500 text-sm sm:text-sm"
+              to="/contact-us"
+              className="text-blue-700 hover:text-blue-500 text-sm sm:text-base"
             >
-              Customer Service
+              Customer service
             </Link>
           </li>
         </ul>
