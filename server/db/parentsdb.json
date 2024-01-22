@@ -1,0 +1,82 @@
+[
+  {
+    "username": "Rebecca",
+    "email": "rebecca@gmail.com",
+    "password": "securepass123",
+    "phoneNumber": "0549876543",
+    "address": "Tel Aviv",
+    "numberOfKids": 1
+  },
+  {
+    "username": "AlexParent",
+    "email": "alexparent@gmail.com",
+    "password": "securepass456",
+    "phoneNumber": "0501122334",
+    "address": "Haifa",
+    "numberOfKids": 3
+  },
+  {
+    "username": "EmilyParent",
+    "email": "emilyparent@gmail.com",
+    "password": "password1234",
+    "phoneNumber": "0535557777",
+    "address": "Beersheba",
+    "numberOfKids": 2
+  },
+  {
+    "username": "DavidParent",
+    "email": "davidparent@gmail.com",
+    "password": "davidpass789",
+    "phoneNumber": "0587654321",
+    "address": "Netanya",
+    "numberOfKids": 1
+  },
+  {
+    "username": "Sophia",
+    "email": "sophia@gmail.com",
+    "password": "sophiapass123",
+    "phoneNumber": "0567890123",
+    "address": "Jerusalem",
+    "numberOfKids": 2
+  },
+  {
+    "username": "EthanParent",
+    "email": "ethanparent@gmail.com",
+    "password": "ethanpass456",
+    "phoneNumber": "0523456789",
+    "address": "Tel Aviv",
+    "numberOfKids": 3
+  },
+  {
+    "username": "Isabella",
+    "email": "isabella@gmail.com",
+    "password": "isabellapass789",
+    "phoneNumber": "0556789012",
+    "address": "Haifa",
+    "numberOfKids": 1
+  },
+  {
+    "username": "DanielParent",
+    "email": "danielparent@gmail.com",
+    "password": "danielpass123",
+    "phoneNumber": "0578901234",
+    "address": "Beersheba",
+    "numberOfKids": 2
+  },
+  {
+    "username": "OliviaParent",
+    "email": "oliviaparent@gmail.com",
+    "password": "oliviapass456",
+    "phoneNumber": "0545678901",
+    "address": "Netanya",
+    "numberOfKids": 3
+  },
+  {
+    "username": "Aiden",
+    "email": "aiden@gmail.com",
+    "password": "aidenpass789",
+    "phoneNumber": "0541234567",
+    "address": "Jerusalem",
+    "numberOfKids": 2
+  }
+]
