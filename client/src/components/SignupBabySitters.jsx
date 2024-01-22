@@ -54,6 +54,9 @@ const SignupBabysitter = ({ onClose }) => {
     <>
       <div>
         <h2 className="mt-4 text-center text-2xl text-pink-600 ">
+          Hello Sweet :-)
+        </h2>
+        <h2 className="mt-4 text-center text-xl text-blue-600 ">
           Register here
         </h2>
         <form

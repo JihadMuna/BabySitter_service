@@ -1,5 +1,6 @@
 // components/SignupParent.jsx
 import React, { useState } from "react";
+import axios from "axios";
 
 const SignupParent = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -42,63 +43,87 @@ const SignupParent = ({ onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="signup-form">
-      <label>
-        Username:
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Address:
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Phone Number:
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Number of Kids:
-        <input
-          type="number"
-          name="numberOfKids"
-          value={formData.numberOfKids}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <>
+      <div>
+        <h2 className="mt-4 text-center text-2xl text-pink-600 ">
+          Hello Parent :-)
+        </h2>
+        <h2 className="mt-4 text-center text-xl text-blue-600 ">
+          Register here
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          className="bg-gray-100 flex flex-col py-4 pl-8 pr-25 rounded shadow-md mx-auto w-96 m-4"
+        >
+          <label className="flex mr-4 mb-4">
+            Username:
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="form-input rounded block ml-2 w-96"
+            />
+          </label>
+          <label className="flex mr-4 mb-4">
+            Email:
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="form-input block ml-4 w-96"
+            />
+          </label>
+          <label className="flex mr-4 mb-4">
+            Password:
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-input rounded block ml-2 w-96"
+            />
+          </label>
+          <label className="flex mr-4 mb-4">
+            Address:
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="form-input rounded block ml-2 w-96"
+            />
+          </label>
+          <label className="flex mr-4 mb-4">
+            Phone Number:
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              className="form-input block ml-2 w-52"
+            />
+          </label>
+          <label className="flex mr-4 mb-4">
+            Number of Kids:
+            <input
+              type="number"
+              name="numberOfKids"
+              value={formData.numberOfKids}
+              onChange={handleChange}
+              className="form-input rounded block ml-2 w-10"
+            />
+          </label>
+          <button
+            type="submit"
+            className="bg-pink-500 text-white py-2 px-10 rounded mx-auto mt-2hover:bg-pink-600"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
