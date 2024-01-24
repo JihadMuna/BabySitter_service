@@ -4,6 +4,7 @@ import logoImage from "../assets/babylogo.png";
 import { IoMenu } from "react-icons/io5";
 import Categories from "./Categories";
 import useParentsList from "../hooks/useParentsList";
+import { CgProfile } from "react-icons/cg";
 
 const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
   const { isAuthenticated, setIsAuthenticated, loginParent, logout } =
@@ -44,7 +45,7 @@ const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
           </li>
         </ul>
       </nav>
-      <nav className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold">
+      <nav className="text-md sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold">
         <ul className="flex gap-2 sm:gap-4">
           <li className="border text-pink-700 border-black rounded hover:text-pink-500 hover:bg-gray-300 px-2 sm:px-4 py-1 text-xs sm:text-base">
             <Link to="/">Main</Link>
@@ -53,7 +54,7 @@ const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
             <>
               <li>
                 <button
-                  className="text-s sm:text-base hover:border-transparent hover:text-pink-600"
+                  className=" sm:text-base hover:border-transparent hover:text-pink-600"
                   onClick={handleLogout}
                 >
                   Logout

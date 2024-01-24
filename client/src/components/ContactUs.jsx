@@ -17,6 +17,13 @@ const ContactUs = () => {
     setShowSuccessModal(false);
   };
 
+  const requestTypes = [
+    "General Inquiry",
+    "Technical Support",
+    "Billing Issue",
+    "Other",
+  ];
+
   return (
     <>
       <div className="flex flex-col items-center">
@@ -97,13 +104,17 @@ const ContactUs = () => {
               id="requestType"
               className="input-field ml-2 px-6 rounded shadow-md"
               required
-              value={selectedRequestType} // Add a state variable for selectedRequestType
-              onChange={(e) => setSelectedRequestType(e.target.value)} // Add a state setter function for selectedRequestType
+              value={selectedRequestType}
+              onChange={(e) => setSelectedRequestType(e.target.value)}
             >
               <option value="" disabled>
                 Select Type
               </option>
-              {/* Add your options here */}
+              {requestTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -149,7 +160,7 @@ const ContactUs = () => {
         {showSuccessModal && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded shadow-md text-center">
-              <p className="text-xl font-bold mb-4">
+              <p className="text-xl sm:text-sm md:text-md font-bold mb-4">
                 Message Sent Successfully!
               </p>
               {/* Use Link to navigate back to the home page */}

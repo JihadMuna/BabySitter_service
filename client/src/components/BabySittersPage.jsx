@@ -41,7 +41,7 @@ const BabySittersPage = () => {
   return (
     <div className="mt-10 p-6 bg-slate-300">
       <div className="mb-4 flex items-center">
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl font-semibold mb-2 sm:text-sm md:text-md">
           Search Babysitters for your needs
         </h2>
         <FaBabyCarriage className="ml-4 text-pink-500" size={30} />
@@ -58,7 +58,7 @@ const BabySittersPage = () => {
           placeholder="Search by username, address, work area, experience, or availability"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border p-2 w-full rounded"
+          className="border p-2 w-full rounded sm:text-sm"
         />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
