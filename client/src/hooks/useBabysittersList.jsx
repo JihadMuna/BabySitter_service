@@ -7,7 +7,7 @@ const useBabysittersList = () => {
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const url = "https://mybabysitter-service.onrender.com/";
+  const url = "http://localhost:3000/";
 
   useEffect(() => {
     fetchData();
