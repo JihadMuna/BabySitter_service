@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useBabysittersList from "../hooks/useBabysittersList";
 
 const SignupBabysitter = ({ onClose }) => {
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Use the useBabysittersList hook
+  const { createBabysitter } = useBabysittersList();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -23,31 +28,27 @@ const SignupBabysitter = ({ onClose }) => {
   };
 
   const handleBabySitterSignup = async (e) => {
-    try {
-      // Make a POST request to the server's signup endpoint
-      const response = await axios.post(
-        "https://mybabysitter-service.onrender.com/api/babySitters/signup",
-        formData
-      );
-
-      // Handle the response from the server (you may want to check for errors)
-      console.log(response.data);
-
-      if (response.data.newBabysitter) {
-        // If signup is successful, close the modal and navigate to the home page
-        onClose();
-
-        // Use navigate to go to the home page
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Error signing up:", error.response.data);
-    }
-  };
-
-  const handleSubmit = (e) => {
     e.preventDefault();
-    handleBabySitterSignup(formData);
+    try {
+      await createBabysitter(formData);
+
+      // Open success modal
+      setSuccessModalOpen(true);
+
+      onClose();
+
+      // Navigate to the home page after a delay
+      setTimeout(() => {
+        navigate("/login-babysitters");
+      }, 2000);
+    } catch (error) {
+      // Check if error.response exists before accessing its properties
+      if (error.response) {
+        console.error("Error signing up:", error.response.data);
+      } else {
+        console.error("Error signing up:", error.message);
+      }
+    }
   };
 
   return (
@@ -60,7 +61,7 @@ const SignupBabysitter = ({ onClose }) => {
           Register here
         </h2>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleBabySitterSignup}
           className="bg-gray-100 flex flex-col py-4 pl-8 pr-25 rounded shadow-md mx-auto w-96 m-4"
         >
           <label className="flex mr-4 mb-4">
@@ -180,6 +181,16 @@ const SignupBabysitter = ({ onClose }) => {
             Sign Up
           </button>
         </form>
+        {/* Success Modal */}
+        {successModalOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+              <p className="text-xl font-bold text-pink-600">
+                Welcome To our Family!
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

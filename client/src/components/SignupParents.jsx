@@ -1,8 +1,14 @@
-// components/SignupParent.jsx
 import React, { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import useParentsList from "../hooks/useParentsList";
 
 const SignupParent = ({ onClose }) => {
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Use the usParentsList hook
+  const { createParent } = useParentsList();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -10,6 +16,7 @@ const SignupParent = ({ onClose }) => {
     address: "",
     phoneNumber: "",
     numberOfKids: 0,
+    description: "",
   });
 
   const handleChange = (e) => {
@@ -17,29 +24,27 @@ const SignupParent = ({ onClose }) => {
   };
 
   const handleParentSignup = async (e) => {
-    try {
-      // Make a POST request to server's signup endpoint
-      const response = await axios.post(
-        "https://mybabysitter-service.onrender.com/api/parents/signup",
-        formData
-      );
-
-      // Handle the response from the server
-      console.log(response.data);
-
-      // Clear the form or navigate to another page upon successful signup
-      // For simplicity, we're just logging the response here
-    } catch (error) {
-      console.error("Error signing up:", error.response.data);
-    }
-  };
-
-  const handleSubmit = (e) => {
     e.preventDefault();
-    // Validate form fields if needed
-    // Call the signup function and pass the form data
-    handleParentSignup(formData);
-    onClose(); // You might want to close the modal upon successful signup
+    try {
+      await createParent(formData);
+
+      // Open success modal
+      setSuccessModalOpen(true);
+
+      onClose();
+
+      // Navigate to the home page after a delay
+      setTimeout(() => {
+        navigate("/login-parents");
+      }, 2000);
+    } catch (error) {
+      // Check if error.response exists before accessing its properties
+      if (error.response) {
+        console.error("Error signing up:", error.response.data);
+      } else {
+        console.error("Error signing up:", error.message);
+      }
+    }
   };
 
   return (
@@ -52,7 +57,7 @@ const SignupParent = ({ onClose }) => {
           Register here
         </h2>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleParentSignup}
           className="bg-gray-100 flex flex-col py-4 pl-8 pr-25 rounded shadow-md mx-auto w-96 m-4"
         >
           <label className="flex mr-4 mb-4">
@@ -115,6 +120,16 @@ const SignupParent = ({ onClose }) => {
               className="form-input rounded block ml-2 w-10"
             />
           </label>
+          <label className="flex mr-4 mb-4">
+            Description:
+            <input
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="form-input rounded block ml-2 w-96"
+            />
+          </label>
           <button
             type="submit"
             className="bg-pink-500 text-white py-2 px-10 rounded mx-auto mt-2hover:bg-pink-600"
@@ -122,6 +137,16 @@ const SignupParent = ({ onClose }) => {
             Sign Up
           </button>
         </form>
+        {/* Success Modal */}
+        {successModalOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+              <p className="text-xl font-bold text-pink-600">
+                Welcome To our Family!
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

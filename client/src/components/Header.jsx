@@ -1,14 +1,29 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoImage from "../assets/babylogo.png";
 import { IoMenu } from "react-icons/io5";
 import Categories from "./Categories";
+import useParentsList from "../hooks/useParentsList";
 
 const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
+  const { isAuthenticated, setIsAuthenticated, loginParent, logout } =
+    useParentsList();
   const [showCategories, setShowCategories] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleCategories = () => {
     setShowCategories(!showCategories);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsAuthenticated(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
@@ -34,25 +49,40 @@ const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
           <li className="border text-pink-700 border-black rounded hover:text-pink-500 hover:bg-gray-300 px-2 sm:px-4 py-1 text-xs sm:text-base">
             <Link to="/">Main</Link>
           </li>
-          <li>
-            <Link
-              to="/sign-up"
-              className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
-              onClick={() => setSignupModalOpen(true)}
-            >
-              Sign Up
-            </Link>
-          </li>
-          <li className="text-gray-400 text-xs sm:text-base">|</li>
-          <li>
-            <Link
-              to="/log-in"
-              className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
-              onClick={() => setLoginModalOpen(true)}
-            >
-              Log In
-            </Link>
-          </li>
+          {localStorage.getItem("authToken") ? (
+            <>
+              <li>
+                <button
+                  className="text-s sm:text-base hover:border-transparent hover:text-pink-600"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to="/sign-up"
+                  className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
+                  onClick={() => setSignupModalOpen(true)}
+                >
+                  Sign Up
+                </Link>
+              </li>
+              <li className="text-gray-400 text-xs sm:text-base">|</li>
+              <li>
+                <Link
+                  to="/log-in"
+                  className="text-xs sm:text-base hover:border-transparent hover:text-pink-600"
+                  onClick={() => setLoginModalOpen(true)}
+                >
+                  Log In
+                </Link>
+              </li>
+            </>
+          )}
           <li>
             <button className="px-2 py-1 sm:px-3 sm:py-1 rounded border text-blue-600 border-pink-500 hover:bg-gray-300 hover:text-blue-500 text-xs sm:text-base">
               En
@@ -63,6 +93,7 @@ const Header = ({ setSignupModalOpen, setLoginModalOpen }) => {
 
       {showCategories && (
         <Categories
+          setSignupModalOpen={setSignupModalOpen}
           closeModal={toggleCategories}
           style={{
             position: "absolute",

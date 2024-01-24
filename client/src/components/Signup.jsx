@@ -23,9 +23,9 @@ const Signup = ({ onClose, isSignupModalOpen }) => {
     console.log("Selected Option:", selectedOption);
     // Navigate to the appropriate signup page
     if (selectedOption === "job") {
-      navigate("/signup-babysitters"); // Update path to "/signup-babysitters"
+      navigate("/signup-babysitters"); // Update path to "/signup-jobs" or any other job-related signup page
     } else if (selectedOption === "babysitter") {
-      navigate("/signup-parents"); // Update path to "/signup-parents"
+      navigate("/signup-parents"); // Update path to "/signup-babysitters"
     }
 
     // Close the modal
@@ -68,7 +68,7 @@ const Signup = ({ onClose, isSignupModalOpen }) => {
               </div>
               <div
                 className={`cursor-pointer ${
-                  hoveredImage === "babysitter" ? "border-pink-500" : ""
+                  hoveredImage === "babysitter" ? "border-blue-500" : ""
                 }`}
                 onMouseEnter={() => handleMouseEnter("babysitter")}
                 onMouseLeave={handleMouseLeave}
@@ -81,7 +81,7 @@ const Signup = ({ onClose, isSignupModalOpen }) => {
                   alt="Search for Babysitter"
                   className={`w-48 h-48 object-cover ${
                     hoveredImage === "babysitter"
-                      ? "border-4 border-pink-500"
+                      ? "border-4 border-blue-500"
                       : ""
                   }`}
                 />

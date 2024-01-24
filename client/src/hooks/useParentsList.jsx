@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useBabysittersList = () => {
-  const [babysittersList, setBabysittersList] = useState([]);
+const useParentsList = () => {
+  const [parentsList, setParentsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,11 +13,13 @@ const useBabysittersList = () => {
     fetchData();
   }, []);
 
+  // get all parents
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(url + "api/babySitters/");
-      setBabysittersList(response.data);
+      const response = await axios.get(url + "api/parents/");
+      setParentsList(response.data);
+      console.log("response.data :", response.data);
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -25,48 +27,55 @@ const useBabysittersList = () => {
     }
   };
 
-  const createBabysitter = async (babysitterData) => {
+  // signup parents
+  const createParent = async (parentData) => {
     setLoading(true);
     setError("");
-
     try {
-      const response = await fetch(url + "api/babySitters/signup", {
+      console.log(parentData);
+      const response = await fetch(url + "api/parents/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(babysitterData),
+        body: JSON.stringify(parentData),
       });
+      console.log("Response Status:", response.status);
+      console.log("Response Status Text:", response.statusText);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Assuming the response is JSON, adjust this part based on your API response structure
       const data = await response.json();
+
+      console.log("API Response:", data);
 
       setLoading(false);
 
-      if (data.newBabysitter) {
-        setBabysittersList((prevList) => [...prevList, data.newBabysitter]);
+      if (data.newParent) {
+        setParentsList((prevList) => [...prevList, data.newParent]);
       } else if (data.error) {
         setError(data.error);
+        // Handle error response appropriately
       }
     } catch (error) {
       setLoading(false);
       setError(error.message);
+      console.error("Error creating parent:", error.message);
     }
   };
 
-  // login Babysitter
-  const loginBabysitter = async (babysitterData) => {
+  // login parent
+  // login parent
+  const loginParent = async (parentData) => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(url + "api/babySitters/login", {
+      const response = await fetch(url + "api/parents/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: babysitterData.email,
-          password: babysitterData.password,
+          email: parentData.email,
+          password: parentData.password,
         }),
       });
 
@@ -76,27 +85,26 @@ const useBabysittersList = () => {
 
       const data = await response.json();
 
-      if (data) {
-        const { token } = data;
-        console.log("Parent logged in successfully. Token:", token);
+      if (data.token) {
+        console.log("Parent logged in successfully. Token:", data.token);
 
         // Set isAuthenticated to true upon successful login
         setIsAuthenticated(true);
-        console.log("isAuthenticated :", isAuthenticated);
+        console.log("isAuthenticated:", isAuthenticated);
 
         // Save the token to local storage
-        localStorage.setItem("authToken", token);
+        localStorage.setItem("authToken", data.token);
+
+        // Return user information
+        return { user: data.user, error: null };
       } else {
         console.error("Login failed. Response data is undefined.");
+        return { user: null, error: "Invalid response format" };
       }
-
-      setLoading(false);
-
-      return { data, error: null };
     } catch (error) {
       setLoading(false);
       setError(error);
-      return { data: null, error };
+      return { user: null, error };
     }
   };
 
@@ -111,19 +119,18 @@ const useBabysittersList = () => {
       setError(error);
     }
   };
-
   return {
     fetchData,
-    babysittersList,
-    setBabysittersList,
+    setParentsList,
+    parentsList,
     loading,
     error,
-    createBabysitter,
-    loginBabysitter,
+    createParent,
+    loginParent,
     logout,
     isAuthenticated,
     setIsAuthenticated,
   };
 };
 
-export default useBabysittersList;
+export default useParentsList;

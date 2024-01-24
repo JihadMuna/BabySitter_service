@@ -1,18 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import parent1 from "../assets/parent2.jpg";
+import parent2 from "../assets/parent1.jpg";
+import babysitter1 from "../assets/babysitter2.jpg";
+import babysitter2 from "../assets/babysitter1.jpg";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ onClose, isLoginModalOpen }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [hoveredImage, setHoveredImage] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // Add login logic here
-    console.log("Logging in with:", { username, password });
-    // You may want to perform authentication and handle the login process
-    //just close the modal in this example
+  // Define event handlers for hovering in and out
+  const handleMouseEnter = (image) => {
+    setHoveredImage(image);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredImage(null);
+  };
+
+  const handleLogin = (selectedOption) => {
+    console.log("Selected Option:", selectedOption);
+    // Navigate to the appropriate login page
+    if (selectedOption === "parent") {
+      navigate("/login-parents");
+    } else if (selectedOption === "babysitter") {
+      navigate("/login-babysitters");
+    }
+
+    // Close the modal
     onClose();
   };
 
@@ -26,48 +41,57 @@ const Login = ({ onClose, isLoginModalOpen }) => {
                 onClose();
                 navigate("/");
               }}
-              className="absolute top-3 right-5 text-gray-600-bold cursor-pointer"
+              className="absolute top-3 right-5 text-gray-700-bold cursor-pointer"
             >
               X
             </button>
-            <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-            <form>
-              <div className="mb-4">
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="mt-1 p-2 border rounded-md w-full"
-                />
-              </div>
-              <div className="mb-4">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="mt-1 p-2 border rounded-md w-full"
-                />
-              </div>
-              <button
-                type="button"
-                onClick={handleLogin}
-                className="bg-pink-600 text-white px-40 py-2 rounded hover:bg-pink-500 w-full"
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Select and continue to login:
+            </h2>
+            <div className="flex justify-center items-center space-x-8 mb-8">
+              <div
+                className={`cursor-pointer ${
+                  hoveredImage === "parent" ? "border-blue-500" : ""
+                }`}
+                onMouseEnter={() => handleMouseEnter("parent")}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleLogin("parent")}
               >
-                Login
-              </button>
-            </form>
-            <p className="mt-4 text-center">
-              Don't have an account?{" "}
-              <Link to="/sign-up" className="text-pink-600 hover:underline">
-                Register here
-              </Link>
-            </p>
+                <img
+                  src={hoveredImage === "parent" ? parent1 : parent2}
+                  alt="Login as Parent"
+                  className={`w-48 h-48 object-cover ${
+                    hoveredImage === "parent" ? "border-4 border-blue-500" : ""
+                  }`}
+                />
+                <p className="text-center mt-2 text-gray-600">
+                  Login as Parent
+                </p>
+              </div>
+              <div
+                className={`cursor-pointer ${
+                  hoveredImage === "babysitter" ? "border-pink-500" : ""
+                }`}
+                onMouseEnter={() => handleMouseEnter("babysitter")}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleLogin("babysitter")}
+              >
+                <img
+                  src={
+                    hoveredImage === "babysitter" ? babysitter1 : babysitter2
+                  }
+                  alt="Login as Babysitter"
+                  className={`w-48 h-48 object-cover ${
+                    hoveredImage === "babysitter"
+                      ? "border-4 border-pink-500"
+                      : ""
+                  }`}
+                />
+                <p className="text-center mt-2 text-gray-600">
+                  Login as Babysitter
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       )}
