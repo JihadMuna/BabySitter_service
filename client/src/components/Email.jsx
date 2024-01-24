@@ -5,7 +5,7 @@ export default function Email({ cardUser }) {
     <div>
       <a href={`mailto:mayoush89k@gmail.com?subject=role}&body=body`}>
         {" "}
-        Male Me !{" "}
+        Mail Me !{" "}
       </a>
     </div>
   );
