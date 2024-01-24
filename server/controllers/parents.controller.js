@@ -52,9 +52,18 @@ export const signupParent = async (req, res, next) => {
       address,
       phoneNumber,
       numberOfKids,
+      description,
     } = req.body;
     if (
-      !(username && email && password && phoneNumber && address && numberOfKids)
+      !(
+        username &&
+        email &&
+        password &&
+        phoneNumber &&
+        address &&
+        numberOfKids &&
+        description
+      )
     ) {
       return res
         .status(STATUS_CODE.BAD_REQUEST)
@@ -62,6 +71,7 @@ export const signupParent = async (req, res, next) => {
     }
 
     const parent = await Parent.findOne({ email });
+    console.log(parent);
     if (parent) {
       return res
         .status(STATUS_CODE.BAD_REQUEST)
@@ -71,10 +81,17 @@ export const signupParent = async (req, res, next) => {
       username,
       email,
       password,
+      phoneNumber,
+      address,
+      numberOfKids,
+      description,
       role: role || "parent",
     });
-    // const token = generateToken(parent._id, parent.role);
-    res.status(STATUS_CODE.CREATED).json({ newParent });
+    // const parentId = await parent?._id;
+    // console.log(parentId);
+    // console.log(parent._id);
+    // const token = generateToken(parentId, parent.role);
+    res.status(STATUS_CODE.CREATED).json({ newParent: newParent });
   } catch (error) {
     next(error);
   }

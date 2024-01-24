@@ -89,12 +89,19 @@ export const signupBabySitter = async (req, res, next) => {
       username,
       email,
       password,
+      age,
+      address,
+      workLocationArea,
+      experience,
+      image,
+      description,
+      availability,
+      phoneNumber,
       role: role || "babysitter",
     });
 
     res.status(STATUS_CODE.CREATED).json({ newBabysitter });
   } catch (error) {
-    console.log(`block 2`);
     next(error);
   }
 };

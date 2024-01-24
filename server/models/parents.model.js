@@ -40,6 +40,12 @@ const parentSchema = new mongoose.Schema({
     // required: true,
     trim: true,
   },
+  description: {
+    type: String,
+    // required: true,
+    trim: true,
+    minLength: 11,
+  },
   role: {
     type: String,
     default: "parent",
