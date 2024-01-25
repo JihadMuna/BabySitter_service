@@ -26,6 +26,7 @@ const LoginParents = ({ onLogin, onClose }) => {
       }
 
       // If login is successful, you can perform further actions here
+      console.log("data :", data);
       const { token } = data;
       console.log("Parent logged in successfully. Token:", token);
 

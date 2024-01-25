@@ -8,6 +8,7 @@ const useParentsList = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const url = "http://localhost:3000/";
+  // const url = "https://mybabysitter-service.onrender.com/";
 
   useEffect(() => {
     fetchData();
@@ -94,12 +95,12 @@ const useParentsList = () => {
 
         // Save the token to local storage
         localStorage.setItem("authToken", data.token);
-
+        console.log({ user: data, error: null });
         // Return user information
-        return { user: data.user, error: null };
+        return { data: data, error: null };
       } else {
         console.error("Login failed. Response data is undefined.");
-        return { user: null, error: "Invalid response format" };
+        return { data: null, error: "Invalid response format" };
       }
     } catch (error) {
       setLoading(false);
