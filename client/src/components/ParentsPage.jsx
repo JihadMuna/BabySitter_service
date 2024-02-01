@@ -45,7 +45,7 @@ const ParentsPage = () => {
   }
 
   return (
-    <div className="mt-10 p-6 bg-slate-300">
+    <div className="mt-2 p-6 bg-slate-300">
       <div className="mb-4 flex items-center">
         <h2 className="text-2xl font-semibold mb-2">
           Search Parents to find a suitable job
