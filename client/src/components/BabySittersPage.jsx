@@ -39,7 +39,7 @@ const BabySittersPage = () => {
   });
 
   return (
-    <div className="mt-10 p-6 bg-slate-300">
+    <div className="mt-4 p-6 bg-slate-300">
       <div className="mb-4 flex items-center">
         <h2 className="text-2xl font-semibold mb-2 sm:text-sm md:text-md">
           Search Babysitters for your needs

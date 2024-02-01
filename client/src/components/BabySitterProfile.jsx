@@ -40,11 +40,16 @@ const BabysitterProfile = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center m-6 h-100">
       <div className="max-w-md bg-gray-200 p-8 rounded-md shadow-md">
         <h2 className="text-3xl text-blue-500 font-bold mb-4 text-center">
           {babysitter.username}'s Details
         </h2>
+        <img
+          src={babysitter.image}
+          alt={`Image of ${babysitter.username}`}
+          className="w-full h-40 object-cover mb-2 rounded-md"
+        />
         <div className="mb-4">
           <p className="text-lg m-4"> {babysitter.description}</p>
           <p className="mb-2">
@@ -53,10 +58,6 @@ const BabysitterProfile = () => {
           <p className="mb-2">
             <span className="font-semibold">Experience:</span>{" "}
             {babysitter.experience}
-          </p>
-          <p className="mb-2">
-            <span className="font-semibold">Hourly Rate:</span>{" "}
-            {babysitter.hourlyRate}
           </p>
           <p className="mb-2">
             <span className="font-semibold">Phone Number:</span>{" "}
